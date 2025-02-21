@@ -13,7 +13,6 @@ const SignUp = () => {
             {step === 1 && <SingUpStepOne setStep={setStep} />}
             {step === 2 && <SignUpStepTwo setStep={setStep} />}
         </div>
-
     )
 }
 export default SignUp
