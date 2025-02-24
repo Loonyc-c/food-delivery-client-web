@@ -5,6 +5,7 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react"
 import { ChangeEvent } from "react"
 import Link from "next/link"
 import { emailValidation } from "@/app/utils/validation"
+import axios from "axios"
 
 const SingUpStepOne = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> }) => {
 
@@ -18,19 +19,35 @@ const SingUpStepOne = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> 
     })
     console.log(inputValue)
 
-    const handleValidation = () => {
-        const validationError = emailValidation(inputValue);
-        setError(validationError);
-
-        if (!validationError) {
-            setStep((prev: number) => prev + 1);
-        }
-    };
 
     useEffect(() => {
         if (typeof window !== 'undefined')
             localStorage.setItem("email", inputValue);
     }, [inputValue]);
+
+    const sendDataToDataBase = async () => {
+
+        try {
+            const response = await axios.post("http://localhost:9999/auth/sign-up", JSON.stringify({
+                email: inputValue
+            }))
+            console.log("Email successfully sent to db:", response.data);
+        } catch (error) {
+            console.log("Error:", error)
+
+        }
+    }
+
+    const handleValidation = async () => {
+        const validationError = emailValidation(inputValue);
+        setError(validationError);
+
+        if (!validationError) {
+            setStep((prev: number) => prev + 1);
+            await sendDataToDataBase()
+        }
+    };
+
 
     return (
         <div className="w-screen h-screen flex px-[2%] py-[1%] gap-[3%]">

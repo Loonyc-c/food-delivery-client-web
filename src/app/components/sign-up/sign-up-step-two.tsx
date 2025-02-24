@@ -3,8 +3,9 @@ import { Dispatch, SetStateAction, useState } from "react"
 import { ChangeEvent } from "react"
 import { passwordValidation } from "@/app/utils/validation"
 import Link from "next/link"
+import axios from "axios"
 
-const SignUpStepTwo = ({ setStep }:{ setStep: Dispatch<SetStateAction<number>> }) => {
+const SignUpStepTwo = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> }) => {
     // const [passwordValues,setPasswordValues] = useState<Password>({})
     // const [error, setError] = useState({})
     // const getPasswordValue = ((e: ChangeEvent<HTMLInputElement>) => {
@@ -26,9 +27,30 @@ const SignUpStepTwo = ({ setStep }:{ setStep: Dispatch<SetStateAction<number>> }
         setConfirmPasswordValue(e.target.value)
     })
 
-    const handleValidation = () => {
+    const handleValidation = async () => {
         const validationError = passwordValidation(passwordValue, confirmPasswordValue)
         setError(validationError)
+
+        if (passwordValue !== confirmPasswordValue) {
+            setError("Password doesn't match")
+        } else {
+            try{
+                try{
+                    const response = await axios.post("http://localhost:9999/auth/sign-up",{
+                        password:passwordValue
+                    })
+                    console.log("password successfully sent to db:", response.data);
+                }catch(error){
+                    console.log("Error:", error)
+                    
+                }
+
+            }catch(error){
+                console.log(`there is an error to post password to db ${error}`)
+            }
+        }
+
+
     }
 
     const returnPrevStep = () => {

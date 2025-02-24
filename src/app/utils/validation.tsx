@@ -19,9 +19,7 @@ export const passwordValidation = (passwordValue:string,confirmPasswordValue:str
         return "Нууц үг дор хаяж 6 тэмдэгттэй байх ёстой!"
     } else if (!passwordRegex.test(passwordValue)) {
         return "Нууц үг нь том, жижиг үсэг, тоо, тусгай тэмдэгт агуулсан байх ёстой!"
-    } else if (passwordValue !== confirmPasswordValue) {
-        return "Нууц үг таарахгүй байна!"
-    }
+    } 
     return ""
 
 }
