@@ -7,7 +7,11 @@ import Link from "next/link"
 import { emailValidation } from "@/app/utils/validation"
 import axios from "axios"
 
-const SingUpStepOne = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> }) => {
+type SingUpStepOneProps = {
+    setStep: Dispatch<SetStateAction<number>>
+}
+
+const SingUpStepOne = ({ setStep }: SingUpStepOneProps) => {
 
     const [inputValue, setInputValue] = useState<string>(() => {
         return localStorage.getItem("email") || "";
@@ -17,7 +21,7 @@ const SingUpStepOne = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> 
     const getInputValue = ((e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value)
     })
-    console.log(inputValue)
+    // console.log(inputValue)
 
 
     useEffect(() => {
@@ -25,18 +29,17 @@ const SingUpStepOne = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> 
             localStorage.setItem("email", inputValue);
     }, [inputValue]);
 
-    const sendDataToDataBase = async () => {
+    // const sendDataToDataBase = async () => {
 
-        try {
-            const response = await axios.post("http://localhost:9999/auth/sign-up", JSON.stringify({
-                email: inputValue
-            }))
-            console.log("Email successfully sent to db:", response.data);
-        } catch (error) {
-            console.log("Error:", error)
-
-        }
-    }
+    //     try {
+    //         const response = await axios.post("http://localhost:9999/auth/sign-up", {
+    //             email: inputValue
+    //         })
+    //         console.log("Email successfully sent to db", response.data);
+    //     } catch (error) {
+    //         console.log("Error on email to db from frontend", error)
+    //     }
+    // }
 
     const handleValidation = async () => {
         const validationError = emailValidation(inputValue);
@@ -44,7 +47,7 @@ const SingUpStepOne = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> 
 
         if (!validationError) {
             setStep((prev: number) => prev + 1);
-            await sendDataToDataBase()
+            // await sendDataToDataBase()
         }
     };
 

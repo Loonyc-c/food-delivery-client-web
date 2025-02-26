@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ChangeEvent } from "react"
 import { useState } from "react"
 import { emailValidation } from "@/app/utils/validation"
+import axios from "axios"
 
 type Value = {
     email?:string,
@@ -28,10 +29,21 @@ const SignIn = () => {
         setLoginValue({...loginValue,password:e.target.value})
     })
 
-    const handleValidation = () => {
+    const handleValidation = async () => {
         const emailValue = loginValue?.email
         const emailValidationError = emailValidation(emailValue as string)
         setError({...error,email:emailValidationError})
+
+        try{
+            const response = await axios.post("http://localhost:9999/auth/sign-in", {
+                email: loginValue.email,
+                password: loginValue.password
+            });
+            console.log("Log in data successfuly sent to db", response.data);
+
+        }catch(error){
+            console.error(`Error during login:`, error);
+        }
     }
 
     return (

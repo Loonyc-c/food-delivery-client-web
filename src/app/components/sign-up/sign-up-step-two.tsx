@@ -5,7 +5,12 @@ import { passwordValidation } from "@/app/utils/validation"
 import Link from "next/link"
 import axios from "axios"
 
-const SignUpStepTwo = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> }) => {
+type SignUpStepTwoProps = {
+    setStep: Dispatch<SetStateAction<number>>,
+}
+
+
+const SignUpStepTwo = ({ setStep }: SignUpStepTwoProps) => {
     // const [passwordValues,setPasswordValues] = useState<Password>({})
     // const [error, setError] = useState({})
     // const getPasswordValue = ((e: ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +24,11 @@ const SignUpStepTwo = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> 
     const [error, setError] = useState("")
     const [showPassword, setShowPassword] = useState(false);
 
+    const email = localStorage.getItem("email") || ""
+    console.log(email)
+    // console.log("aaaa")
+    console.log(passwordValue)
+
     const getPasswordValue = ((e: ChangeEvent<HTMLInputElement>) => {
         setPasswordValue(e.target.value)
     })
@@ -29,28 +39,25 @@ const SignUpStepTwo = ({ setStep }: { setStep: Dispatch<SetStateAction<number>> 
 
     const handleValidation = async () => {
         const validationError = passwordValidation(passwordValue, confirmPasswordValue)
-        setError(validationError)
+
+        if (validationError) {
+            setError(validationError)
+            return
+        }
 
         if (passwordValue !== confirmPasswordValue) {
             setError("Password doesn't match")
-        } else {
-            try{
-                try{
-                    const response = await axios.post("http://localhost:9999/auth/sign-up",{
-                        password:passwordValue
-                    })
-                    console.log("password successfully sent to db:", response.data);
-                }catch(error){
-                    console.log("Error:", error)
-                    
-                }
-
-            }catch(error){
-                console.log(`there is an error to post password to db ${error}`)
-            }
+            return
         }
-
-
+        try {
+            const response = await axios.post("http://localhost:9999/auth/sign-up", {
+                email: email,
+                password: passwordValue
+            });
+            console.log("Password successfully sent to DB:", response.data);
+        } catch (error) {
+            console.error(`Error posting password to DB:`, error);
+        }
     }
 
     const returnPrevStep = () => {
