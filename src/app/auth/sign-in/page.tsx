@@ -47,28 +47,28 @@ const SignIn = () => {
     }
 
     return (
-        <div className="w-screen h-screen flex px-[2%] py-[1%] gap-[3%]">
+        <div className="w-screen h-screen flex px-[2%] py-[1%] gap-[3%] bg-white">
             <div className="w-[35%] h-full flex items-center pl-[5%]">
-                <div className="bg-white w-full h-[50%] flex flex-col gap-[30px]">
+                <div className="w-full h-[50%] flex flex-col gap-[30px]">
                     <button className="border rounded-lg p-2 w-8 h-8 flex justify-center">
-                        <ChevronLeft className="w-4 h-4" />
+                        <ChevronLeft className="w-4 h-4 text-black" />
                     </button>
                     <div>
-                        <h1 className="font-semibold leading-8 text-2xl">Log in</h1>
+                        <h1 className="font-semibold leading-8 text-2xl text-black">Log in</h1>
                         <p className="text-[#71717A]">Log in to enjoy your favorite dishes.</p>
                     </div>
                     <div>
                         <div>
                             <input
                                 placeholder="Enter your email adress"
-                                className="border rounded-lg p-1.5 w-full" 
+                                className="border rounded-lg p-1.5 w-full text-black" 
                                 onChange={getEmailValue}/>
                             {error.email && <p className="text-red-500 text-sm">{error.email}</p>}
                         </div>
                         <div className="mt-[15px]">
                             <input
                                 placeholder="Password"
-                                className="border rounded-lg p-1.5 w-full"
+                                className="border rounded-lg p-1.5 w-full text-black"
                                 onChange={getPasswordValue}
                             />
                         </div>
@@ -96,7 +96,7 @@ const SignIn = () => {
                 </div>
             </div>
             <div className="w-[65%] h-full">
-                <img src="https://s3-alpha-sig.figma.com/img/5d86/e6a2/488bb31d983ecd581caec983f3a32842?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=s9s6n0YLZqP1oUMuv~8bybu~VAB8reKfcmpZeSJXhI4uvGyrR5h9aaPUYFDAa3LbcapgbvgLdyOBBU8DLzW8XO8ANU11dbfko8dn89tKKhbpaaxS6JgzM6A8QtsiUJoI8BQ9CsJLMWx3qZMfdnHp6sPvYf5qc1vSva8lqq5NopPuE0k0xW5QCEVa1kSZlDNt5vtY1EPDB86CK~nhMqOyf3bGjQ26WCXLRi4aw~NahLUyTsarKHjWP-gbRhzngNgZ1mlWFE6J2n--QheNgWkCuRzFr2bIyxw2oMDUHyjVh8r1ac2oceYvjPUTdJueOnO3LuW0q~XMFxG20ZbxqegxcA__"
+                <img src="https://s3-alpha-sig.figma.com/img/5d86/e6a2/488bb31d983ecd581caec983f3a32842?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Pk5hP9vLfvhOHaeOxwk39Q0oFK1tNMIb60VXErxGJUdRjyTKnbUBsUrmVBlFiEY2TSIhbR5ha42y05XNIVLbMH5uFZYISbW8i~Vfn6wa4CSqB-evNAtNI9t8bgkqDCyp2ts5aS6jpUk4NbHk7iHGLD7dLZtVxBwVvyRkpXjGWNgwQC9i~S3Mju1MIUDGSA3eodE0wgQbvWxBe6s7381MgE8UMm1ha45y2S4NYd-09YhH-EEiqwpWLotY8CIWUxTcmn691dq02yDRyQthbFfbBLtVQh6k0W1RCoOBhK-0kTz4pTXI8m57GE3Nt8jf1fQb1xM3sXu~-XrrUU6QwSc8xw__"
                     className="rounded-3xl h-full"
                 />
             </div>

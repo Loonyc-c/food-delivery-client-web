@@ -9,7 +9,7 @@ const SignUp = () => {
     const [step, setStep] = useState(1)
 
     return (
-        <div>
+        <div className="bg-white">
             {step === 1 && <SingUpStepOne setStep={setStep} />}
             {step === 2 && <SignUpStepTwo setStep={setStep} />}
         </div>
