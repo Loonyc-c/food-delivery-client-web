@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const InfiniteTextSlider = () => {
   return (
-    <div className="w-full overflow-hidden bg-[#EF4444] text-white py-4 " >
+    <div className="w-screen overflow-hidden bg-[#EF4444] text-white py-4 " >
       <motion.div
         className="flex space-x-10 text-2xl font-bold whitespace-nowrap"
         animate={{ x: [0, -1000] }}

@@ -2,10 +2,8 @@ import NomNomIcon from "./icons/nomnom-icon"
 import Link from "next/link"
 
 const Header = () => {
-
-
     return(
-    <div className="flex bg-[#18181B] py-[1%] justify-between px-[5%]"> 
+    <div className="w-screen h-auto flex bg-[#18181B] py-[1%] justify-between px-[5%]"> 
         <div>
             <NomNomIcon/>
         </div>

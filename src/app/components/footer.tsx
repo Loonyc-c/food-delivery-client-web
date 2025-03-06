@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios';
 import { div } from 'framer-motion/client';
 import SocialIcon from './icons/social-icon';
+import { catchCategories } from '../utils/axios';
 
 type Categories = {
     category: string
@@ -19,28 +20,27 @@ const Footer = () => {
     useEffect(() => {
         const getCategories = async () => {
             try {
-                const response = await axios.get("http://localhost:9999/categories");
-                setCategories(response.data);
+                const response = await catchCategories();
+                setCategories(response)
             } catch (error) {
                 console.error("Error getting categories:", error);
             }
         };
-
-        getCategories();
+        getCategories() 
     }, []);
 
     console.log(categories)
 
     return (
 
-        <div className='bg-[#18181B] py-[50px] mt-[100px] flex flex-col gap-[50px] justify-center'>
+        <div className='bg-[#18181B] w-screen h-auto py-[50px] flex flex-col items-center gap-[50px] mt-14'>
             <div>
                 <InfiniteTextSlider />
             </div>
-            <div className='max-w-screen-xl flex justify-center'>
+            <div className='w-[1280px] flex flex-col gap-16'>
                 <div className='flex justify-around '>
                     <NomNomIcon />
-                    <div className='flex gap-[300px]'>
+                    <div className='flex gap-[100px] '>
                         <div className='text-[#FAFAFA] flex flex-col gap-[10px]'>
                             <h1 className='text-[#71717A]'>NOMNOM</h1>
                             <p> Home</p>
@@ -63,11 +63,9 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div className=' max-w-screen-xl h-auto flex items-center justify-center'>
-                <div className='border-t-2 flex text-[#71717A] gap-7'>
+                <div className='w-[1280px] border-t-2 flex gap-10 text-[#71717A] '>
                     <p>Copy right 2024 © Nomnom LLC</p>
                     <p>Privacy policy</p>
                     <p>Terms and conditoin</p>
