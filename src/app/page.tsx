@@ -1,5 +1,6 @@
 
 import Categories from "./components/categories";
+import MainContentContainer from "./components/main-content";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       />
       <div className="max-w-screen-xl w-full h-auto mt-14 ">
         <Categories />
+        <MainContentContainer />
       </div>
     </div>
   );

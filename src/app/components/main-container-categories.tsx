@@ -1,13 +1,17 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { catchCategories } from "../utils/axios";
+import { catchCategories, catchFoods } from "@/app/utils/axios";
+import FoodCard from "./food-card";
 type Categories = {
     category: string
+    _id:string
 }
 
-const Categories = () => {
+const MainPageCategories = () => {
     const [categories, setCategories] = useState<Categories[]>([])
+
+
 
     useEffect(() => {
         const getCategories = async () => {
@@ -22,21 +26,21 @@ const Categories = () => {
     }, []);
 
 
-
     return (
-        <div className="w-full h-full">
-            <h1 className="text-white text-3xl font-semibold mb-8">Categories</h1>
-            <div className="flex justify-between w-full ">
-                {
-                    categories.map((item,i) => (
-                        <div key={i} className="bg-white px-4 py-1 rounded-full ">{item.category}</div>
+        <div className="w-full h-auto">
+            <div>
+            {
+                    categories.map((item,id) => (
+                        <div key={id} className="" >
+                          <div>{item.category}</div> 
+                          <FoodCard category={item._id} /> 
+                        </div>
                     ))
                 }
             </div>
-
         </div>
     )
 
 }
 
-export default Categories
+export default MainPageCategories

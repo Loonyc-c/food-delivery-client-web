@@ -4,7 +4,6 @@
 import InfiniteTextSlider from './motion';
 import NomNomIcon from './icons/nomnom-icon';
 import { useEffect, useState } from 'react'
-import axios from 'axios';
 import { div } from 'framer-motion/client';
 import SocialIcon from './icons/social-icon';
 import { catchCategories } from '../utils/axios';
@@ -28,8 +27,6 @@ const Footer = () => {
         };
         getCategories() 
     }, []);
-
-    console.log(categories)
 
     return (
 
