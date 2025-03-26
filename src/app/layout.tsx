@@ -4,7 +4,11 @@ import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import AuthProvider from "@/providers/AuthProvider";
-
+import { Query } from "@tanstack/react-query";
+import QueryProvider from "@/providers/QueryProvider";
+import { UserProvider } from "@/providers/UserProvider";
+import { FoodProvider } from "@/providers/FoodProvider";
+import { CategoriesProvider } from "@/providers/CategoriesProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,11 +34,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#404040]`}
       >
-        <AuthProvider>
-          <Header />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <QueryProvider>
+          <AuthProvider>
+            <UserProvider>
+              <FoodProvider>
+                <CategoriesProvider>
+                  <Header />
+                  {children}
+                  <Footer />
+                </CategoriesProvider>
+              </FoodProvider>
+            </UserProvider>
+          </AuthProvider>
+        </QueryProvider>
       </body>
     </html>
   );
