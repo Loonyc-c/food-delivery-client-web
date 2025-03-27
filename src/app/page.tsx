@@ -90,7 +90,7 @@ export default function Home() {
           </button>
           <div className="flex gap-[15px] justify-center">
             <p className="text-[#71717A]">Don't have an account ?</p>
-            <Link href={"signUp"}>
+            <Link href={"/signUp"}>
               <button>
                 <p className="text-[#2563EB] hover:underline">Sign up</p>
               </button>

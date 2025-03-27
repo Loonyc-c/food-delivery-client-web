@@ -15,9 +15,10 @@ type DecodedToken = {
 type UserContextType = {
   email: string | undefined;
   role: string | undefined;
+  userId: string | undefined;
 };
 
-const getDecodedToken = (token: string | null): DecodedToken | null => {
+const getDecodedToken = async (token: string | null) => {
   if (!token) return null;
 
   try {
@@ -28,38 +29,43 @@ const getDecodedToken = (token: string | null): DecodedToken | null => {
   }
 };
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+const UserContext = createContext<UserContextType>({} as UserContextType);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
-  const [isTokenLoaded, setIsTokenLoaded] = useState(false);
+  const [client, setClient] = useState<DecodedToken | null>();
 
-  useEffect(() => {
+  const [loading, setLoading] = useState(true);
+
+  const getUser = async () => {
     const storedToken = localStorage.getItem("token");
     setToken(storedToken);
-    setIsTokenLoaded(true);
+    const user = await getDecodedToken(storedToken);
+    setClient(user);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getUser();
   }, []);
 
-  const { data: user, isLoading } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => getDecodedToken(token),
-    enabled: isTokenLoaded,
-  });
-
-  console.log(user);
-
-  if (isLoading) return <p>...Loading</p>;
-
   return (
-    <>
-      <UserContext.Provider value={{ email: user?.email, role: user?.role }}>
-        {children}
-      </UserContext.Provider>
-    </>
+    <UserContext.Provider
+      value={{
+        email: client?.email,
+        role: client?.role,
+        userId: client?.userId,
+      }}
+    >
+      {loading ? <p>...Loading</p> : children}
+    </UserContext.Provider>
   );
 };
 
 export const useUser = () => {
   const context = useContext(UserContext);
+  if (!context) {
+    console.log("hello");
+  }
   return context;
 };

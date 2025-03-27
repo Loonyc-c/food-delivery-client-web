@@ -16,7 +16,7 @@ type Food = {
 type FoodContextType = {
   foods: Food[] | undefined;
 };
-const FoodContext = createContext<FoodContextType | undefined>(undefined);
+const FoodContext = createContext<FoodContextType>({} as FoodContextType);
 
 export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
   const { data: foods, isLoading } = useQuery({

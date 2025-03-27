@@ -1,17 +1,9 @@
 "use client";
 
-import { useUser } from "@/providers/UserProvider";
-import Categories from "../components/categories";
-import { useFoods } from "@/providers/FoodProvider";
-import { useCategories } from "@/providers/CategoriesProvider";
+import Categories from "./(categories)/_features/categories";
+import FoodMenu from "./(foodMenu)/_features/FoodMenu";
+
 const HomePage = () => {
-  // const { foods } = useFoods();
-
-  // console.log("this is useFoods:", foods);
-
-  // const { categories } = useCategories();
-
-  // console.log("use categories", categories);
   return (
     <div className="w-screen h-auto flex flex-col items-center">
       <img
@@ -20,6 +12,7 @@ const HomePage = () => {
       />
       <div className="max-w-screen-xl w-full h-auto mt-14 ">
         <Categories />
+        <FoodMenu />
       </div>
     </div>
   );

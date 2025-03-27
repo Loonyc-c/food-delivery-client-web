@@ -1,7 +1,7 @@
 "use client";
 
-import SingUpStepOne from "@/app/components/sign-up/sign-up-step-one";
-import SignUpStepTwo from "@/app/components/sign-up/sign-up-step-two";
+import SingUpStepOne from "@/app/signUp/components/sign-up-step-one";
+import SignUpStepTwo from "@/app/signUp/components/sign-up-step-two";
 
 import { useState } from "react";
 

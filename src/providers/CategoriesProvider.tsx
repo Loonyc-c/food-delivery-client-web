@@ -12,8 +12,8 @@ type CategoriesType = {
   _id: string;
 };
 
-const CategoriesContext = createContext<CategoriesContextType | undefined>(
-  undefined
+const CategoriesContext = createContext<CategoriesContextType>(
+  {} as CategoriesContextType
 );
 
 export const CategoriesProvider = ({
@@ -26,17 +26,19 @@ export const CategoriesProvider = ({
     queryFn: catchCategories,
   });
 
-  if (isLoading) return <p>...Loading</p>;
-  console.log("categories in provider", categories);
+  console.log(categories);
 
   return (
     <CategoriesContext.Provider value={{ categories }}>
-      {categories ? children : <p>...Loading categories</p>}
+      {categories && !isLoading ? children : <p>...Loading categories</p>}
     </CategoriesContext.Provider>
   );
 };
 
 export const useCategories = () => {
   const context = useContext(CategoriesContext);
+  // if (!context) {
+  //   console.log("hello");
+  // }
   return context;
 };

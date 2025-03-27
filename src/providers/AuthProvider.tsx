@@ -45,7 +45,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     if (!token) {
-      if (pathname !== "/") {
+      if (pathname === "/homePage") {
         router.push("/");
       }
       return;

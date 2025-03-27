@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "./(header)/_features/header";
+import Footer from "./(footer)/_features/footer";
 import AuthProvider from "@/providers/AuthProvider";
 import { Query } from "@tanstack/react-query";
 import QueryProvider from "@/providers/QueryProvider";
@@ -37,13 +37,11 @@ export default function RootLayout({
         <QueryProvider>
           <AuthProvider>
             <UserProvider>
-              <FoodProvider>
-                <CategoriesProvider>
-                  <Header />
-                  {children}
-                  <Footer />
-                </CategoriesProvider>
-              </FoodProvider>
+              <CategoriesProvider>
+                <Header />
+                {children}
+                <Footer />
+              </CategoriesProvider>
             </UserProvider>
           </AuthProvider>
         </QueryProvider>
