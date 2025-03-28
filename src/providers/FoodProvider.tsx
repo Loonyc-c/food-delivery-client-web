@@ -1,8 +1,9 @@
 "use client";
 
-import { catchFoods } from "@/app/utils/axios";
+import { fetchFoodByCategory, fetchFoods } from "@/app/utils/axios";
 import { useQuery } from "@tanstack/react-query";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
+import { useState } from "react";
 
 type Food = {
   category: string | undefined;
@@ -13,28 +14,57 @@ type Food = {
   _id: string | undefined;
 };
 
+type selectedCategoryType = {
+  _id: string | null;
+  category: string;
+};
+
 type FoodContextType = {
   foods: Food[] | undefined;
+  selectedCategory: selectedCategoryType | null;
+  setSelectedCategory: (category: selectedCategoryType | null) => void;
 };
-const FoodContext = createContext<FoodContextType>({} as FoodContextType);
+const FoodContext = createContext<FoodContextType>({
+  foods: [],
+  selectedCategory: null,
+  setSelectedCategory: () => {},
+});
 
 export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
-  const { data: foods, isLoading } = useQuery({
-    queryKey: ["foods"],
-    queryFn: catchFoods,
-  });
+  const [selectedCategory, setSelectedCategory] =
+    useState<selectedCategoryType | null>(null);
 
-  if (isLoading) return <p>...Loading foods</p>;
+  const [foods, setFoods] = useState([]);
+
+  const getData = async () => {
+    let response;
+    if (selectedCategory?._id) {
+      response = await fetchFoodByCategory(selectedCategory._id);
+    } else {
+      response = await fetchFoods();
+    }
+
+    console.log(response);
+    setFoods(response);
+  };
+
+  useEffect(() => {
+    getData();
+  }, [selectedCategory]);
+
+  // if (isLoading) return <p>...Loading foods</p>;
 
   //   console.log("this is food provider", foods);
 
   return (
     <FoodContext.Provider
       value={{
-        foods,
+        foods: foods || [],
+        selectedCategory,
+        setSelectedCategory,
       }}
     >
-      {foods ? children : <div>...loading</div>}
+      {foods ? children : <div>...loading foods</div>}
     </FoodContext.Provider>
   );
 };

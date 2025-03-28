@@ -2,9 +2,7 @@
 
 import InfiniteTextSlider from "../_components/motion";
 import NomNomIcon from "../_ui/nomnom-icon";
-import { useEffect, useState } from "react";
 import SocialIcon from "../_ui/social-icon";
-import { catchCategories } from "../../utils/axios";
 import { usePathname } from "next/navigation";
 import { useCategories } from "@/providers/CategoriesProvider";
 
@@ -17,7 +15,7 @@ const Footer = () => {
 
   const { categories } = useCategories();
 
-  console.log("categories in footer", categories);
+  // console.log("categories in footer", categories);
 
   if (pathName === "/" || pathName === "/signUp") {
     return null;

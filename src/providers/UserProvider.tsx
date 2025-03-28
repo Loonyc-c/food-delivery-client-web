@@ -1,7 +1,6 @@
 "use client";
 
 import { jwtDecode } from "jwt-decode";
-import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect, createContext, useContext } from "react";
 
 type DecodedToken = {
@@ -57,7 +56,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         userId: client?.userId,
       }}
     >
-      {loading ? <p>...Loading</p> : children}
+      {loading ? <p>...Loading user context</p> : children}
     </UserContext.Provider>
   );
 };

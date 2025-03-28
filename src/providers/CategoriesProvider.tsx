@@ -1,8 +1,8 @@
 "use client";
 
-import { catchCategories } from "@/app/utils/axios";
 import { useQuery } from "@tanstack/react-query";
 import { createContext, useContext } from "react";
+import { fetchCategories } from "@/app/utils/axios";
 
 type CategoriesContextType = {
   categories: CategoriesType[] | undefined;
@@ -23,10 +23,8 @@ export const CategoriesProvider = ({
 }) => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
-    queryFn: catchCategories,
+    queryFn: fetchCategories,
   });
-
-  console.log(categories);
 
   return (
     <CategoriesContext.Provider value={{ categories }}>

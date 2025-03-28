@@ -18,7 +18,7 @@ const Profile = () => {
     router.push("/");
   };
 
-  console.log("UserContextType", email);
+  // console.log("UserContextType", email);
 
   return (
     <Popover>
