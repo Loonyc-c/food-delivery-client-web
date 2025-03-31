@@ -1,6 +1,7 @@
 "use client";
 
 import NomNomIcon from "../../(footer)/_ui/nomnom-icon";
+import Address from "../_components/Address";
 import Profile from "../_components/Profile";
 import { usePathname } from "next/navigation";
 
@@ -16,7 +17,8 @@ const Header = () => {
       <div>
         <NomNomIcon />
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-3 items-center">
+        <Address />
         <Profile />
       </div>
     </div>

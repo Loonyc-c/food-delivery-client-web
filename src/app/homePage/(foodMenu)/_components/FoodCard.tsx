@@ -1,3 +1,14 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import OrderDishContent from "./OrderDishContent";
+import AddOrderIcon from "../_ui/AddOrderIcon";
+
 type FoodItemType = {
   image?: string;
   foodName?: string;
@@ -18,8 +29,22 @@ const FoodCard = ({ foodItem }: FoodItemPropsType) => {
           className="w-full h-48 object-cover rounded-lg"
           alt={foodItem?.foodName}
         />
+        <div className="absolute top-[150px] right-2">
+          <Dialog>
+            <DialogTrigger className="bg-white p-2 rounded-full">
+              <AddOrderIcon />
+            </DialogTrigger>
+            <DialogContent className="max-w-[800px] h-[400px]">
+              <DialogHeader className="hidden">
+                <DialogTitle></DialogTitle>
+                <DialogDescription></DialogDescription>
+              </DialogHeader>
+              <OrderDishContent foodItem={foodItem} />
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
-      <div className="w-full h-auto">
+      <div className="w-full h-auto mt-3">
         <div className="flex justify-between">
           <h3 className="text-lg font-semibold text-[24px] text-[#EF4444]">
             {foodItem?.foodName}

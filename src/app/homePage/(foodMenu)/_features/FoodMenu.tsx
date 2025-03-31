@@ -12,7 +12,9 @@ const FoodMenu = () => {
 
   return (
     <div className="w-full h-full flex flex-col">
-      <h1>{selectedCategory?.category}</h1>
+      <h1 className="text-[#FFFFFF] font-semibold">
+        {selectedCategory?.category}
+      </h1>
       <div className="w-full h-full  flex flex-wrap gap-5">
         {foods?.map((food) => (
           <FoodCard key={food._id} foodItem={food} />

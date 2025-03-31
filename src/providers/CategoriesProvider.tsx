@@ -35,8 +35,5 @@ export const CategoriesProvider = ({
 
 export const useCategories = () => {
   const context = useContext(CategoriesContext);
-  // if (!context) {
-  //   console.log("hello");
-  // }
   return context;
 };

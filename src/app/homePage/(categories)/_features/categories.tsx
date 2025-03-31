@@ -2,15 +2,11 @@
 
 import { useCategories } from "@/providers/CategoriesProvider";
 import { useFoods } from "@/providers/FoodProvider";
-// type Categories = {
-//   category: string;
-// };
+import { useState } from "react";
 
 const Categories = () => {
-  const { foods, selectedCategory, setSelectedCategory } = useFoods();
+  const { setSelectedCategory, selectedCategory } = useFoods();
   const { categories } = useCategories();
-
-  // console.log(selectedCategory);
 
   return (
     <div className="w-full h-full">
@@ -26,7 +22,11 @@ const Categories = () => {
           <button
             key={item._id}
             onClick={() => setSelectedCategory(item)}
-            className="bg-white px-4 py-1 rounded-full text-[12px]"
+            className={`px-4 py-1 rounded-full text-[12px] transition-colors duration-300 ${
+              selectedCategory?._id === item._id
+                ? "bg-red-500 text-white"
+                : "bg-white text-black"
+            }`}
           >
             {item.category}
           </button>

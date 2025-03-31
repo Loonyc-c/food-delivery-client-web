@@ -1,7 +1,6 @@
 "use client";
 
 import { fetchFoodByCategory, fetchFoods } from "@/app/utils/axios";
-import { useQuery } from "@tanstack/react-query";
 import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
 
