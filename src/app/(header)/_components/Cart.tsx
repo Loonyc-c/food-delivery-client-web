@@ -15,19 +15,16 @@ import OrderContent from "./OrderContent";
 
 const Cart = () => {
   const [step, setStep] = useState("cart");
-  console.log(step);
+
   return (
     <div>
       <Sheet>
         <SheetTrigger>
           <div className="bg-white w-8 h-8 rounded-full flex justify-center items-center">
             <CartIcon />
-            <div className="absolute top-4 right-[115px] bg-red-500 text-white w-5 h-5 text-[10px] rounded-full flex items-center justify-center">
-              1
-            </div>
           </div>
         </SheetTrigger>
-        <SheetContent className="bg-[#404040] py-10 ">
+        <SheetContent className="bg-[#404040] py-10 w-screen">
           <SheetHeader>
             <SheetTitle>
               <div className="flex text-white gap-4">

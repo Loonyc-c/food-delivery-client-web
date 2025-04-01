@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { addToCart } from "@/app/utils/cart";
 
 type FoodItemType = {
   image?: string;
   foodName?: string;
   price?: number;
   ingredients?: string[];
+  _id?: string;
 };
 
 type FoodItemPropsType = {
@@ -34,17 +36,32 @@ const OrderDishContent = ({ foodItem }: FoodItemPropsType) => {
     if (!userAddress) {
       alert("please enter address");
     }
-  };
 
+    if (foodItem && foodItem._id) {
+      const cartItem = {
+        _id: foodItem._id,
+        foodName: foodItem.foodName || "",
+        price: foodItem.price || 0,
+        image: foodItem.image || "",
+        quantity: orderCount,
+        ingredients: foodItem.ingredients,
+      };
+
+      addToCart(cartItem);
+
+      alert(`${foodItem.foodName} added to cart!`);
+    }
+  };
   return (
     <div className="flex gap-6">
-      <div className="h-full w-[48%]">
+      <div className="h-auto w-[48%] flex items-center justify-center">
         <img
           src={foodItem?.image}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full max-h-[350px] object-contain rounded-lg"
           alt={foodItem?.foodName}
         />
       </div>
+
       <div className="w-[62%] h-full flex flex-col justify-between">
         <div>
           <h1 className="text-[30px] text-red-500">{foodItem?.foodName}</h1>
