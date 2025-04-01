@@ -22,7 +22,7 @@ type FoodItemPropsType = {
 
 const FoodCard = ({ foodItem }: FoodItemPropsType) => {
   return (
-    <div className="bg-white border mt-[20px] w-[340px] h-auto p-4 rounded-lg">
+    <div className="bg-white border mt-[20px] w-[400px] h-[340px] p-4 rounded-lg">
       <div className="relative">
         <img
           src={foodItem?.image}
@@ -44,7 +44,7 @@ const FoodCard = ({ foodItem }: FoodItemPropsType) => {
           </Dialog>
         </div>
       </div>
-      <div className="w-full h-auto mt-3">
+      <div className="w-full h-auto mt-6 flex flex-col gap-2">
         <div className="flex justify-between">
           <h3 className="text-lg font-semibold text-[24px] text-[#EF4444]">
             {foodItem?.foodName}

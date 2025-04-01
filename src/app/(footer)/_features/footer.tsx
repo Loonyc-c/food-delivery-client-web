@@ -22,7 +22,7 @@ const Footer = () => {
   }
 
   return (
-    <div className="bg-[#18181B] w-screen h-auto py-[50px] flex flex-col items-center gap-[50px] mt-14">
+    <div className="bg-[#18181B] w-screen h-auto py-[50px] flex flex-col items-center gap-[50px] mt-14 cursor-default">
       <div>
         <InfiniteTextSlider />
       </div>
@@ -55,7 +55,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="w-[1280px] border-t-2 flex gap-10 text-[#71717A] ">
+        <div className="w-[1280px] border-t-2 flex gap-10 text-[#71717A] cursor-default">
           <p>Copy right 2024 © Nomnom LLC</p>
           <p>Privacy policy</p>
           <p>Terms and conditoin</p>

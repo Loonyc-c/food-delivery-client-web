@@ -26,3 +26,14 @@ export const fetchFoodByCategory = async (selectedCategory: string) => {
     console.log("error in fetch food by category", error);
   }
 };
+
+export const addAddress = async (id: string, address: string) => {
+  try {
+    const response = await axios.put(`http://localhost:9999/user/${id}`, {
+      address,
+    });
+    return response.data;
+  } catch (error) {
+    console.log("error adding address", error);
+  }
+};

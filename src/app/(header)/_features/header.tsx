@@ -2,6 +2,7 @@
 
 import NomNomIcon from "../../(footer)/_ui/nomnom-icon";
 import Address from "../_components/Address";
+import Cart from "../_components/Cart";
 import Profile from "../_components/Profile";
 import { usePathname } from "next/navigation";
 
@@ -19,6 +20,7 @@ const Header = () => {
       </div>
       <div className="flex gap-3 items-center">
         <Address />
+        <Cart />
         <Profile />
       </div>
     </div>

@@ -13,7 +13,11 @@ const Categories = () => {
       <h1 className="text-white text-3xl font-semibold mb-8">Categories</h1>
       <div className="flex justify-between w-full ">
         <button
-          className="bg-white px-4 py-1 rounded-full text-[12px]"
+          className={`px-4 py-1 rounded-full text-[12px] ${
+            selectedCategory === null
+              ? "bg-red-500 text-white"
+              : "bg-white text-black"
+          }`}
           onClick={() => setSelectedCategory(null)}
         >
           All foods

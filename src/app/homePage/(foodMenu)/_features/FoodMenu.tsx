@@ -8,14 +8,13 @@ type CategoriesType = {
 
 const FoodMenu = () => {
   const { foods, selectedCategory } = useFoods();
-  const { categories } = useCategories();
 
   return (
     <div className="w-full h-full flex flex-col">
       <h1 className="text-[#FFFFFF] font-semibold">
         {selectedCategory?.category}
       </h1>
-      <div className="w-full h-full  flex flex-wrap gap-5">
+      <div className="w-full h-full  flex flex-wrap justify-between">
         {foods?.map((food) => (
           <FoodCard key={food._id} foodItem={food} />
         ))}
