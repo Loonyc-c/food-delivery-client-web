@@ -43,6 +43,8 @@ const CartContent = () => {
     }
   };
 
+  console.log;
+
   const handleCheckout = async () => {
     if (cart.items.length === 0) {
       alert("Your cart is empty");
@@ -55,7 +57,7 @@ const CartContent = () => {
             item._id,
             item.quantity
           );
-          return { foodName: createdItem._id, quantity: createdItem.quantity };
+          return { food: createdItem._id, quantity: createdItem.quantity };
         })
       );
 

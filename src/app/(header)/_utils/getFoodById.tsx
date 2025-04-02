@@ -1,0 +1,1 @@
+const getFoodById = (foodId: string) => {};

@@ -1,12 +1,9 @@
 import axios from "axios";
 
-export const createFoodOrderItem = async (
-  foodName: string,
-  quantity: number
-) => {
+export const createFoodOrderItem = async (food: string, quantity: number) => {
   try {
     const response = await axios.post("http://localhost:9999/orderItem", {
-      foodName,
+      food,
       quantity,
     });
     return response.data;
@@ -18,7 +15,7 @@ export const createFoodOrderItem = async (
 export const createFoodOrder = async (
   user: string | undefined,
   totalPrice: number,
-  foodOrderItems: { foodName: any; quantity: any }[]
+  foodOrderItems: { food: any; quantity: any }[]
 ) => {
   try {
     const response = await axios.post("http://localhost:9999/order", {
@@ -35,6 +32,15 @@ export const createFoodOrder = async (
 export const getUserOrders = async (userId: string | undefined) => {
   try {
     const response = axios.get(`http://localhost:9999/order/${userId}`);
+    return response;
+  } catch (error) {
+    console.log("error in getting user food order ", error);
+  }
+};
+
+export const getFoodById = (foodId: string) => {
+  try {
+    const response = axios.get(`http://localhost:9999/order/${foodId}`);
     return response;
   } catch (error) {
     console.log("error in getting user food order ", error);
