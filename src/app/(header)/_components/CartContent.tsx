@@ -7,6 +7,9 @@ import {
 } from "@/app/utils/cart";
 import { createFoodOrderItem } from "../_utils/axios";
 import { createFoodOrder } from "../_utils/axios";
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
+import HelmetIcon from "../_ui/HelmetIcon";
 
 type CartItem = {
   _id: string;
@@ -47,31 +50,55 @@ const CartContent = () => {
 
   const handleCheckout = async () => {
     if (cart.items.length === 0) {
-      alert("Your cart is empty");
-      return;
+      return toast.warn(
+        "🛒 Whoops! Your cart is feeling lonely… feed it some goodies! 🍕✨",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        }
+      );
     }
     try {
-      const orderItems = await Promise.all(
+      const orderItemIds = await Promise.all(
         cart.items.map(async (item) => {
           const createdItem = await createFoodOrderItem(
             item._id,
             item.quantity
           );
-          return { food: createdItem._id, quantity: createdItem.quantity };
+          return createdItem._id;
         })
       );
 
       const orderResponse = await createFoodOrder(
         userId,
         cart.totalPrice,
-        orderItems
+        orderItemIds
       );
 
-      console.log("order", orderResponse);
-
       localStorage.removeItem("cart");
+      setCart({ items: [], totalPrice: 0 });
 
-      alert("Order placed successfully!");
+      toast.success(
+        "🎉 Woohoo! Your order is on its way! 🚀🍔 Get ready for some deliciousness! 😋",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        }
+      );
     } catch (error) {
       console.error("Checkout error:", error);
       alert("Failed to place order. Please try again.");
@@ -79,11 +106,16 @@ const CartContent = () => {
   };
 
   return (
-    <div className="mt-4 flex flex-col gap-4">
+    <div className="mt-4 flex flex-col gap-4 cursor-default">
       <div className=" bg-white w-full h-auto rounded-xl p-3">
         {cart.items.length === 0 ? (
-          <div className="text-center py-10">
-            <p className="text-xl mb-4">Your cart is empty</p>
+          <div className="text-center py-10 bg-[#F4F4F5] px-2 flex items-center flex-col gap-4 rounded-xl">
+            <HelmetIcon />
+            <h1 className="text-[16px] font-semibold">No Order Yet ?</h1>
+            <p className="text-[12px] text-[#71717A]">
+              🍕 You haven't placed any orders yet. Start exploring our menu and
+              satisfy your cravings!
+            </p>
           </div>
         ) : (
           <div className="mb-6">

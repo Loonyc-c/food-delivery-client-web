@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import OrderDishContent from "./OrderDishContent";
 import AddOrderIcon from "../_ui/AddOrderIcon";
+import { useState } from "react";
 
 type FoodItemType = {
   image?: string;
@@ -21,6 +22,8 @@ type FoodItemPropsType = {
 };
 
 const FoodCard = ({ foodItem }: FoodItemPropsType) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   return (
     <div className="bg-white border mt-[20px] w-[400px] h-[340px] p-4 rounded-lg">
       <div className="relative">
@@ -39,7 +42,10 @@ const FoodCard = ({ foodItem }: FoodItemPropsType) => {
                 <DialogTitle></DialogTitle>
                 <DialogDescription></DialogDescription>
               </DialogHeader>
-              <OrderDishContent foodItem={foodItem} />
+              <OrderDishContent
+                foodItem={foodItem}
+                closeDialog={() => setIsDialogOpen(false)}
+              />
             </DialogContent>
           </Dialog>
         </div>

@@ -8,6 +8,7 @@ import {
 import ProfileIcon from "../_ui/ProfileIcon";
 import { useUser } from "@/providers/UserProvider";
 import { useRouter } from "next/navigation";
+import { toast, Bounce } from "react-toastify";
 
 const Profile = () => {
   const { email } = useUser();
@@ -16,6 +17,17 @@ const Profile = () => {
   const handleSignOut = () => {
     localStorage.removeItem("token");
     router.push("/");
+    toast.success("Catch you later, friend! 👋✨", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
 
   // console.log("UserContextType", email);

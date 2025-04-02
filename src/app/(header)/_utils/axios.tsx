@@ -8,7 +8,8 @@ export const createFoodOrderItem = async (food: string, quantity: number) => {
     });
     return response.data;
   } catch (error) {
-    console.log("error in create food order item ", error);
+    console.error("Error in create food order item:", error);
+    throw error;
   }
 };
 
@@ -26,6 +27,7 @@ export const createFoodOrder = async (
     return response.data;
   } catch (error) {
     console.log("error in create food order ", error);
+    throw error;
   }
 };
 
@@ -35,6 +37,7 @@ export const getUserOrders = async (userId: string | undefined) => {
     return response;
   } catch (error) {
     console.log("error in getting user food order ", error);
+    throw error;
   }
 };
 
@@ -44,5 +47,6 @@ export const getFoodById = (foodId: string) => {
     return response;
   } catch (error) {
     console.log("error in getting user food order ", error);
+    throw error;
   }
 };

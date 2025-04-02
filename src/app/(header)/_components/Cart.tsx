@@ -17,7 +17,7 @@ const Cart = () => {
   const [step, setStep] = useState("cart");
 
   return (
-    <div>
+    <div className="cursor-default">
       <Sheet>
         <SheetTrigger>
           <div className="bg-white w-8 h-8 rounded-full flex justify-center items-center">
@@ -27,7 +27,7 @@ const Cart = () => {
         <SheetContent className="bg-[#404040] py-10 w-screen">
           <SheetHeader>
             <SheetTitle>
-              <div className="flex text-white gap-4">
+              <div className="flex text-white gap-4 cursor-default">
                 <CartIconDetail /> Food order detail
               </div>
             </SheetTitle>

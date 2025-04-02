@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { addToCart } from "@/app/utils/cart";
+import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 type FoodItemType = {
   image?: string;
@@ -11,9 +13,10 @@ type FoodItemType = {
 
 type FoodItemPropsType = {
   foodItem: FoodItemType;
+  closeDialog: () => void;
 };
 
-const OrderDishContent = ({ foodItem }: FoodItemPropsType) => {
+const OrderDishContent = ({ foodItem, closeDialog }: FoodItemPropsType) => {
   const userAddress = localStorage.getItem("address");
   const [orderCount, setOrderCount] = useState(1);
   const [totalPrice, setTotalPrice] = useState(foodItem?.price || 0);
@@ -34,7 +37,20 @@ const OrderDishContent = ({ foodItem }: FoodItemPropsType) => {
 
   const handleAddCartButton = () => {
     if (!userAddress) {
-      alert("please enter address");
+      return toast.warn(
+        "📍 Whoa there! You forgot to add your address. How will we find you? 🏠",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        }
+      );
     }
 
     if (foodItem && foodItem._id) {
@@ -49,11 +65,25 @@ const OrderDishContent = ({ foodItem }: FoodItemPropsType) => {
 
       addToCart(cartItem);
 
-      alert(`${foodItem.foodName} added to cart!`);
+      toast.success(
+        `🍕 ${foodItem.foodName} is now in your cart! Get ready for a delicious time! 🎉`,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        }
+      );
+      closeDialog();
     }
   };
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-6 cursor-default">
       <div className="h-auto w-[48%] flex items-center justify-center">
         <img
           src={foodItem?.image}
