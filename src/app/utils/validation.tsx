@@ -22,6 +22,8 @@ export const passwordValidation = (
     return "Password must be at least 6 characters long!";
   } else if (!passwordRegex.test(passwordValue)) {
     return "Password must contain uppercase, lowercase letters, a number, and a special character!";
+  } else if (passwordValue !== confirmPasswordValue) {
+    return "Password doesn't match";
   }
 
   return "";

@@ -26,18 +26,6 @@ const SingUpStepOne = ({ setStep }: SingUpStepOneProps) => {
       localStorage.setItem("email", inputValue);
   }, [inputValue]);
 
-  // const sendDataToDataBase = async () => {
-
-  //     try {
-  //         const response = await axios.post("http://localhost:9999/auth/sign-up", {
-  //             email: inputValue
-  //         })
-  //         console.log("Email successfully sent to db", response.data);
-  //     } catch (error) {
-  //         console.log("Error on email to db from frontend", error)
-  //     }
-  // }
-
   const handleValidation = async () => {
     const validationError = emailValidation(inputValue);
     setError(validationError);
@@ -92,7 +80,8 @@ const SingUpStepOne = ({ setStep }: SingUpStepOneProps) => {
       </div>
       <div className="w-[65%] h-full">
         <img
-          src="https://s3-alpha-sig.figma.com/img/5d86/e6a2/488bb31d983ecd581caec983f3a32842?Expires=1742169600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Pk5hP9vLfvhOHaeOxwk39Q0oFK1tNMIb60VXErxGJUdRjyTKnbUBsUrmVBlFiEY2TSIhbR5ha42y05XNIVLbMH5uFZYISbW8i~Vfn6wa4CSqB-evNAtNI9t8bgkqDCyp2ts5aS6jpUk4NbHk7iHGLD7dLZtVxBwVvyRkpXjGWNgwQC9i~S3Mju1MIUDGSA3eodE0wgQbvWxBe6s7381MgE8UMm1ha45y2S4NYd-09YhH-EEiqwpWLotY8CIWUxTcmn691dq02yDRyQthbFfbBLtVQh6k0W1RCoOBhK-0kTz4pTXI8m57GE3Nt8jf1fQb1xM3sXu~-XrrUU6QwSc8xw__"
+          src="/authImage.jpeg"
+          alt="Auth Image"
           className="rounded-3xl h-full"
         />
       </div>

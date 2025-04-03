@@ -30,7 +30,7 @@ const Profile = () => {
     });
   };
 
-  // console.log("UserContextType", email);
+  console.log(email);
 
   return (
     <Popover>

@@ -46,8 +46,6 @@ const CartContent = () => {
     }
   };
 
-  console.log;
-
   const handleCheckout = async () => {
     if (cart.items.length === 0) {
       return toast.warn(

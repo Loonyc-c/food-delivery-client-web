@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -8,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import OrderDishContent from "./OrderDishContent";
 import AddOrderIcon from "../_ui/AddOrderIcon";
-import { useState } from "react";
 
 type FoodItemType = {
   image?: string;
@@ -23,14 +23,22 @@ type FoodItemPropsType = {
 
 const FoodCard = ({ foodItem }: FoodItemPropsType) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <div className="bg-white border mt-[20px] w-[400px] h-[340px] p-4 rounded-lg">
       <div className="relative">
+        {isLoading && (
+          <div className="w-full h-48 bg-gray-300 animate-pulse rounded-lg"></div>
+        )}
         <img
           src={foodItem?.image}
-          className="w-full h-48 object-cover rounded-lg"
+          className={`w-full h-48 object-cover rounded-lg transition-opacity duration-300 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
           alt={foodItem?.foodName}
+          onLoad={() => setIsLoading(false)}
+          onError={() => setIsLoading(false)}
         />
         <div className="absolute top-[150px] right-2">
           <Dialog>
