@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { createContext, useContext } from "react";
 import { fetchCategories } from "@/app/utils/axios";
+import Loading from "@/components/loading";
 
 type CategoriesContextType = {
   categories: CategoriesType[] | undefined;
@@ -28,7 +29,7 @@ export const CategoriesProvider = ({
 
   return (
     <CategoriesContext.Provider value={{ categories }}>
-      {categories && !isLoading ? children : <p>...Loading categories</p>}
+      {categories && !isLoading ? children : <Loading />}
     </CategoriesContext.Provider>
   );
 };

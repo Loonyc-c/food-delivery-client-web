@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addToCart } from "@/app/utils/cart";
 import { toast } from "react-toastify";
 import { Bounce } from "react-toastify";
+import { DialogClose } from "@/components/ui/dialog";
 
 type FoodItemType = {
   image?: string;
@@ -98,7 +99,7 @@ const OrderDishContent = ({ foodItem, closeDialog }: FoodItemPropsType) => {
           <p>{foodItem?.ingredients?.join(", ") + "."}</p>
         </div>
         <div className="flex flex-col gap-5">
-          <div className="w-full h-14 flex">
+          <div className="flex w-full h-14">
             <div className="w-full h-full">
               <p>Total Price</p>
               <p className="text-[24px] font-bold">${totalPrice}</p>
@@ -119,12 +120,14 @@ const OrderDishContent = ({ foodItem, closeDialog }: FoodItemPropsType) => {
               </button>
             </div>
           </div>
-          <button
-            className="w-full py-3 px-7 bg-black text-white rounded-full"
-            onClick={handleAddCartButton}
-          >
-            Add to cart
-          </button>
+          <DialogClose asChild>
+            <button
+              className="w-full py-3 text-white bg-black rounded-full px-7"
+              onClick={handleAddCartButton}
+            >
+              Add to cart
+            </button>
+          </DialogClose>
         </div>
       </div>
     </div>

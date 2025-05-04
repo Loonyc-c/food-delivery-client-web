@@ -1,6 +1,7 @@
 "use client";
 
 import { fetchFoodByCategory, fetchFoods } from "@/app/utils/axios";
+import Loading from "@/components/loading";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type Food = {
@@ -67,7 +68,7 @@ export const FoodProvider = ({ children }: { children: React.ReactNode }) => {
         isLoading,
       }}
     >
-      {isLoading ? <div>Loading foods...</div> : children}
+      {isLoading ? <Loading /> : children}
     </FoodContext.Provider>
   );
 };
